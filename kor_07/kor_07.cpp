@@ -32,7 +32,7 @@
 #define var_ido_2 5
 #define var_ido_3 10
 #define var_ido_4 30
-#define var_ido_5 60
+#define var_ido_5 120
 
 
 int main()
