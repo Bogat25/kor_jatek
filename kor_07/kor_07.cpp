@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS //nem jó a kirás
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -35,13 +35,6 @@
 #define var_ido_5 60
 
 
-//ido rogzitese
-
-clock_t start_time;
-clock_t end_time = 0;
-clock_t ido_mentes_1 = 0;
-clock_t ido_mentes_2 = 0;
-double elapsed_time;
 
 int main()
 {
@@ -65,12 +58,12 @@ int main()
 		,"2 embert olt","Gyereket olt","Terrorista","Drogdiller","Haborus hos"
 	};
 
-float speed = 0;
+int speed = 0;
 	while (speed < 1 || speed > 500)
 	{
 		printf(CYAN_TEXT"Mennyire legyen gyors a jatek? \n");
 		printf(RESET_TEXT);
-		scanf("%f", &speed);
+		scanf("%d", &speed);
 	}
 	system("cls");
 
@@ -159,7 +152,6 @@ float speed = 0;
 
 	while (player_input < -1 || player_input > 10)
 	{
-
 		if (jatek_elkezdodott > 0)
 		{
 			player_input = 2;
@@ -177,7 +169,6 @@ float speed = 0;
 			jatek_elkezdodott++;
 		}
 		system("cls");
-		start_time = clock(); //stopper start
 		if (player_input == 1) {
 			for (int i = 0; i < jatekos_szam; i++) //kiiras
 			{
@@ -238,6 +229,23 @@ float speed = 0;
 			printf(CYAN_TEXT"Szavazas kezdete:\n");
 			printf(RESET_TEXT);
 
+			int ido_1 = 0;								//várakozási idõ
+			clock_t eltelt_ido = 0;
+			clock_t ido = time(NULL);
+			ido = ido % 120 + 1;
+			while (eltelt_ido < speed)
+			{
+				ido_1 = eltelt_ido;
+				eltelt_ido = (time(NULL) % 120 + 1) - ido;
+				if (eltelt_ido > ido_1)
+				{
+					if (speed - eltelt_ido + 1 != 0)
+					{
+					printf("\nA szavazas kezdeteig: %d", speed - eltelt_ido + 1);
+					}
+					ido_1 = eltelt_ido;
+				}
+			}
 
 			for (int i = 0; i < jatekos_szam; i++) //értékek nullázása
 			{
