@@ -159,6 +159,11 @@ float speed = 0;
 
 	while (player_input < -1 || player_input > 10)
 	{
+
+		if (jatek_elkezdodott > 0)
+		{
+			player_input = 2;
+		}
 		while (player_input < -1 || player_input > 2) {
 			printf(CYAN_TEXT"Kerlek valassz a lehetosegek kozul\n");
 			printf(RESET_TEXT);
@@ -244,7 +249,7 @@ float speed = 0;
 			for (int i = 0; i < jatekos_szam; i++) //megtörténik a szavazás
 			{
 				if (emberek_elok[i] == 1) {
-					while (emberek_elok[szavazat - 1] != 1) //nincs befejezve
+					while (emberek_elok[szavazat - 1] != 1)
 					{
 						printf(GREEN_TEXT"\n%s", nevek[i]);
 						printf(RESET_TEXT);
