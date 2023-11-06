@@ -32,8 +32,16 @@
 #define var_ido_2 5
 #define var_ido_3 10
 #define var_ido_4 30
-#define var_ido_5 120
+#define var_ido_5 60
 
+
+//ido rogzitese
+
+clock_t start_time;
+clock_t end_time = 0;
+clock_t ido_mentes_1 = 0;
+clock_t ido_mentes_2 = 0;
+double elapsed_time;
 
 int main()
 {
@@ -56,6 +64,16 @@ int main()
 		"Artatlan","Artatlan","Artatlan","Artatlan","Artatlan","Artatlan"
 		,"2 embert olt","Gyereket olt","Terrorista","Drogdiller","Haborus hos"
 	};
+
+float speed = 0;
+	while (speed < 1 || speed > 500)
+	{
+		printf(CYAN_TEXT"Mennyire legyen gyors a jatek? \n");
+		printf(RESET_TEXT);
+		scanf("%f", &speed);
+	}
+	system("cls");
+
 	int jatekos_szam = 0;
 	printf(YELLOW_TEXT"Udvozollek a kor nevu jatekban.\n");
 	printf(RESET_TEXT);
@@ -73,6 +91,7 @@ int main()
 		printf(RESET_TEXT);
 		scanf("%d", &jatekos_szam);
 	}
+
 	printf(CYAN_TEXT"Kerem a jatekos neveket (egyedieket):\n");
 	printf(RESET_TEXT);
 	char nevek[max_jatekoszam][max_char_hossz] = {};
@@ -136,6 +155,7 @@ int main()
 	int szavazat_max = 0;
 
 
+	int jatek_elkezdodott = 0;
 
 	while (player_input < -1 || player_input > 10)
 	{
@@ -149,9 +169,10 @@ int main()
 			printf(RED_TEXT"Kilepes: -1\n");
 			printf(RESET_TEXT);
 			scanf("%d", &player_input);
+			jatek_elkezdodott++;
 		}
 		system("cls");
-
+		start_time = clock(); //stopper start
 		if (player_input == 1) {
 			for (int i = 0; i < jatekos_szam; i++) //kiiras
 			{
@@ -223,16 +244,23 @@ int main()
 			for (int i = 0; i < jatekos_szam; i++) //megtörténik a szavazás
 			{
 				if (emberek_elok[i] == 1) {
-					while (emberek_elok[szavazat - 1] != 1)
+					while (emberek_elok[szavazat - 1] != 1) //nincs befejezve
 					{
 						printf(GREEN_TEXT"\n%s", nevek[i]);
 						printf(RESET_TEXT);
 						printf(CYAN_TEXT" kire szavazol: ");
 						printf(RESET_TEXT);
 						scanf("%d", &szavazat);
-						szavazat_szamlalo[szavazat - 1] = szavazat_szamlalo[szavazat - 1] + 1;
-						szavazat = -1;
-						break;
+						if (emberek_elok[szavazat - 1] == 1)
+						{
+							szavazat_szamlalo[szavazat - 1] = szavazat_szamlalo[szavazat - 1] + 1;
+							szavazat = -1;
+							break;
+						}
+						else
+						{
+							szavazat = -1;
+						}
 					}
 				}
 			}
