@@ -200,35 +200,6 @@ int speed = 0;
 		}
 		if (player_input == 2) {
 
-			for (int i = 0; i < jatekos_szam; i++) //kiiras
-			{
-				if (emberek_elok[i] == 1)
-				{
-
-					printf(BLUE_TEXT"ID: %d Nev: %-*s Kor: %-2d Foglalkozas: %-*s Csaladi allapot: %-*s Eloelet: %-*s Politika: %-*s Kinezet: %d\n" RESET_TEXT,
-						i + 1, max_char_hossz, nevek[i], jatekos_kor[i],
-						max_char_hossz_foglalkozas, jatekos_foglalkozas[i],
-						max_char_hossz_csaladi_allapot, jatekos_csaladi_allapot[i],
-						max_char_hossz_eloelet, jatekos_eloelet[i],
-						max_char_hossz_politikai_beallitottsag, jatekos_politikai_beallitottsag[i],
-						jatekos_kinezet[i]);
-				}
-				else if (emberek_elok[i] == 0)
-				{
-
-					printf(RED_TEXT"ID: %d Nev: %-*s Kor: %-2d Foglalkozas: %-*s Csaladi allapot: %-*s Eloelet: %-*s Politika: %-*s Kinezet: %d\n" RESET_TEXT,
-						i + 1, max_char_hossz, nevek[i], jatekos_kor[i],
-						max_char_hossz_foglalkozas, jatekos_foglalkozas[i],
-						max_char_hossz_csaladi_allapot, jatekos_csaladi_allapot[i],
-						max_char_hossz_eloelet, jatekos_eloelet[i],
-						max_char_hossz_politikai_beallitottsag, jatekos_politikai_beallitottsag[i],
-						jatekos_kinezet[i]);
-				}
-			}
-
-			printf(CYAN_TEXT"Szavazas kezdete:\n");
-			printf(RESET_TEXT);
-
 			int ido_1 = 0;								//várakozási idõ
 			clock_t eltelt_ido = 0;
 			clock_t ido = time(NULL);
@@ -241,6 +212,32 @@ int speed = 0;
 				{
 					if (speed - eltelt_ido + 1 != 0)
 					{
+						system("cls");
+						for (int i = 0; i < jatekos_szam; i++) //kiiras
+						{
+							if (emberek_elok[i] == 1)
+							{
+
+								printf(BLUE_TEXT"ID: %d Nev: %-*s Kor: %-2d Foglalkozas: %-*s Csaladi allapot: %-*s Eloelet: %-*s Politika: %-*s Kinezet: %d\n" RESET_TEXT,
+									i + 1, max_char_hossz, nevek[i], jatekos_kor[i],
+									max_char_hossz_foglalkozas, jatekos_foglalkozas[i],
+									max_char_hossz_csaladi_allapot, jatekos_csaladi_allapot[i],
+									max_char_hossz_eloelet, jatekos_eloelet[i],
+									max_char_hossz_politikai_beallitottsag, jatekos_politikai_beallitottsag[i],
+									jatekos_kinezet[i]);
+							}
+							else if (emberek_elok[i] == 0)
+							{
+
+								printf(RED_TEXT"ID: %d Nev: %-*s Kor: %-2d Foglalkozas: %-*s Csaladi allapot: %-*s Eloelet: %-*s Politika: %-*s Kinezet: %d\n" RESET_TEXT,
+									i + 1, max_char_hossz, nevek[i], jatekos_kor[i],
+									max_char_hossz_foglalkozas, jatekos_foglalkozas[i],
+									max_char_hossz_csaladi_allapot, jatekos_csaladi_allapot[i],
+									max_char_hossz_eloelet, jatekos_eloelet[i],
+									max_char_hossz_politikai_beallitottsag, jatekos_politikai_beallitottsag[i],
+									jatekos_kinezet[i]);
+							}
+						}
 					printf("\nA szavazas kezdeteig: %d", speed - eltelt_ido + 1);
 					}
 					ido_1 = eltelt_ido;
